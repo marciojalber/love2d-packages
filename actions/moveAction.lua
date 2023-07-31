@@ -13,19 +13,19 @@ moveAction = {}
 
 moveAction.move = function(this, keys)
    if this.underGravity == nil then
-      error("Valor inexistente para [underGravity]")
+      error("Valor inexistente para [this.underGravity]")
    end
 
    if this.velocity == nil then
-      error("Valor inexistente para [velocity]")
+      error("Valor inexistente para [this.velocity]")
    end
 
    if this.x == nil then
-      error("Valor inexistente para [x]")
+      error("Valor inexistente para [this.x]")
    end
 
    if this.y == nil then
-      error("Valor inexistente para [y]")
+      error("Valor inexistente para [this.y]")
    end
 
    return function(dt)

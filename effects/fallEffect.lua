@@ -14,19 +14,19 @@ fallEffect = {}
 
 fallEffect.fall = function(this, keys)
    if this.underGravity == nil then
-      error("Valor inexistente para [underGravity]")
+      error("Valor inexistente para [this.underGravity]")
    end
 
    if this.velocityY == nil then
-      error("Valor inexistente para [velocityY]")
+      error("Valor inexistente para [this.velocityY]")
    end
 
    if this.height == nil then
-      error("Valor inexistente para [height]")
+      error("Valor inexistente para [this.height]")
    end
 
    if this.onFloor == nil then
-      error("Valor inexistente para [onFloor]")
+      error("Valor inexistente para [this.onFloor]")
    end
 
    return function(dt)

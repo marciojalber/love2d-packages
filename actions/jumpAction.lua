@@ -10,12 +10,12 @@ CONDICOES
 jumpAction = {}
 
 jumpAction.jump = function(this, keys)
-   if this.underGravity == nil then
-      error("Valor inexistente para [underGravity]")
+   if this.underGravity2 == nil then
+      error("Valor inexistente para [this.underGravity]")
    end
 
    if this.velocityY == nil then
-      error("Valor inexistente para [velocityY]")
+      error("Valor inexistente para [this.velocityY]")
    end
 
    return function(dt)
