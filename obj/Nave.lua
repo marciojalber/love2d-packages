@@ -13,24 +13,16 @@ function Nave.new()
    
    this.jumpHeight   = 2
    this.velY         = 0
-   this.underGravity = false
+   this.underGravity = true
    this.onFloor      = true
 
    this.draw = function()
       love.graphics.draw(this.image, this.x, this.y)
    end
 
-   this.applyGravity = function(dt)
-      fallEffect.fall(this, dt, false)
-   end
-
-   this.move = function(dt)
-      moveAction.move(this, dt, false)
-   end
-
-   this.jump = function(dt)
-      jumpAction.jump(this, dt, false)
-   end
+   this.applyGravity = fallEffect.fall(this, false)
+   this.move         = moveAction.move(this, false)
+   this.jump         = jumpAction.jump(this, false)
 
    return this
 end
@@ -46,24 +38,16 @@ function Ovni.new()
 
    this.jumpHeight   = 4
    this.velY         = 0
-   this.underGravity = false
+   this.underGravity = true
    this.onFloor      = true
 
    function this.draw()
       love.graphics.draw(this.image, this.x, this.y)
    end
 
-   this.applyGravity = function(dt)
-      fallEffect.fall(this, dt, true)
-   end
-
-   this.move = function(dt)
-      moveAction.move(this, dt, true)
-   end
-
-   this.jump = function(dt)
-      jumpAction.jump(this, dt, true)
-   end
+   this.applyGravity = fallEffect.fall(this, true)
+   this.move         = moveAction.move(this, true)
+   this.jump         = jumpAction.jump(this, true)
 
    return this
 end
