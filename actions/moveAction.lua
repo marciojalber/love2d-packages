@@ -1,15 +1,42 @@
+--[[
+PROPS
+   underGravity   Sob gravidade
+   velocity       Velocidade
+   x              Posição X na tela
+   y              Posição Y na tela
+
+CONDICOES - MOVER VERTCIAL
+   underGravity   != true
+]]--
+
 moveAction = {}
 
 moveAction.move = function(this, keys)
+   if this.underGravity == nil then
+      error("Valor inexistente para [underGravity]")
+   end
+
+   if this.velocity == nil then
+      error("Valor inexistente para [velocity]")
+   end
+
+   if this.x == nil then
+      error("Valor inexistente para [x]")
+   end
+
+   if this.y == nil then
+      error("Valor inexistente para [y]")
+   end
+
    return function(dt)
       -- Define as variáveis
       local up       = 0
       local down     = 0
       local left     = 0
       local right    = 0
-      local vel      = this.vel * dt
-      local limitY   = win.h - this.image:getHeight()
-      local limitX   = win.w - this.image:getWidth()
+      local velocity = this.velocity * dt
+      local limitY   = win.h - this.height
+      local limitX   = win.w - this.width
       
       -- Captua a direção do movimento com as setas
       if not keys then
@@ -39,18 +66,18 @@ moveAction.move = function(this, keys)
       end
 
       -- Indica se está se movendo na diagonal
-      if (up + down > 0) and (left + right > 0) and this.underGravity then
-         vel      = vel * 0.8
+      if (up + down > 0) and (left + right > 0) and not this.underGravity then
+         velocity      = velocity * 0.8
       end
 
       -- Move o objeto na vertical
-      if this.underGravity then
+      if not this.underGravity then
          if up > 0 then
-            local y = this.y - vel
+            local y = this.y - velocity
             if y < 0 then y = 0 end
             this.y = y
          elseif down > 0 then
-            local y = this.y + vel
+            local y = this.y + velocity
             if y > limitY then y = limitY end
             this.y = y
          end
@@ -58,11 +85,11 @@ moveAction.move = function(this, keys)
 
       -- Move o objeto na horizontal
       if left > 0 then
-         local x = this.x - vel
+         local x = this.x - velocity
          if x < 0 then x = 0 end
          this.x = x
       elseif right > 0 then
-         local x = this.x + vel
+         local x = this.x + velocity
          if x > limitX then  x = limitX end
          this.x = x
       end

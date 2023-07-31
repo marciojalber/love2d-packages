@@ -9,11 +9,13 @@ function Nave.new()
    this.image        = love.graphics.newImage("assets/img/nave100.png")
    this.x            = ( win.w - this.image:getWidth() ) / 2
    this.y            = win.h - this.image:getHeight()
-   this.vel          = 250
+   this.width        = this.image:getWidth()
+   this.height       = this.image:getHeight()
+   this.velocity     = 250
    
    this.jumpHeight   = 2
-   this.velY         = 0
-   this.underGravity = true
+   this.velocityY    = 0
+   this.underGravity = false
    this.onFloor      = true
 
    this.draw = function()
@@ -34,17 +36,19 @@ function Ovni.new()
    this.image        = love.graphics.newImage("assets/img/ovni100.png")
    this.x            = ( win.w - this.image:getWidth() ) / 2
    this.y            = win.h - this.image:getHeight()
-   this.vel          = 250
+   this.width        = this.image:getWidth()
+   this.height       = this.image:getHeight()
+   this.velocity     = 250
 
    this.jumpHeight   = 4
-   this.velY         = 0
+   this.velocityY    = 0
    this.underGravity = true
    this.onFloor      = true
 
    function this.draw()
       love.graphics.draw(this.image, this.x, this.y)
    end
-
+   
    this.applyGravity = fallEffect.fall(this, true)
    this.move         = moveAction.move(this, true)
    this.jump         = jumpAction.jump(this, true)

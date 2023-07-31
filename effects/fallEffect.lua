@@ -1,16 +1,49 @@
+--[[
+PROPS
+   underGravity   Sob gravidade
+   velocityY      Velocidade da queda
+   height         Altura do objeto
+   onFloor        Está no chão
+
+CONDICOES
+   underGravity   != true
+   onFloor        != true
+]]--
+
 fallEffect = {}
 
 fallEffect.fall = function(this, keys)
+   if this.underGravity == nil then
+      error("Valor inexistente para [underGravity]")
+   end
+
+   if this.velocityY == nil then
+      error("Valor inexistente para [velocityY]")
+   end
+
+   if this.height == nil then
+      error("Valor inexistente para [height]")
+   end
+
+   if this.onFloor == nil then
+      error("Valor inexistente para [onFloor]")
+   end
+
    return function(dt)
+      -- Não cai se não estiver sob gravidade
+      if not this.underGravity then
+         return
+      end
+
       -- Não cai se estiver no chão
       if this.onFloor then
          return
       end
 
       -- Define as variáveis
-      this.velY      = this.velY + gravity * dt / 2
-      local limitY   = win.h - this.image:getHeight()
-      local y        = this.y + this.velY
+      this.velocityY = this.velocityY + gravity * dt / 2
+      local limitY   = win.h - this.height
+      local y        = this.y + this.velocityY
 
       if y >= limitY then
          y              = limitY
