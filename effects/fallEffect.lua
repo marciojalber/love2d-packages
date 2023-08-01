@@ -10,9 +10,7 @@ CONDICOES
    onFloor        != true
 ]]--
 
-fallEffect = {}
-
-fallEffect.fall = function(this, keys)
+local function fallEffect(this, keys)
    if this.underGravity == nil then
       error("Valor inexistente para [this.underGravity]")
    end
@@ -53,3 +51,5 @@ fallEffect.fall = function(this, keys)
       this.y         = y
    end
 end
+
+return fallEffect

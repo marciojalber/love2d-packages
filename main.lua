@@ -1,9 +1,13 @@
 -- CARREGAMENTO INICIAL
 function love.load()
-   require "obj/Nave"
    require "config"
-   player1 = Nave.new()
-   player2 = Ovni.new()
+   local Veiculo = require "obj/Veiculo"
+
+   players = {
+      player1 = Veiculo:new({img = 'nave100.png'}),
+      player2 = Veiculo:new({img = 'ovni100.png', useKeys = true, underGravity = true, jumpHeight = 4}),
+   }
+
    local f = love.graphics.newFont(12)
    love.graphics.setFont(f)
    -- love.graphics.setColor(0,0,0,255)
@@ -14,16 +18,17 @@ end
 
 -- CÁLCULOS
 function love.update(dt)
-   player1.move(dt)
-   player1.applyGravity(dt)
-   player2.move(dt)
-   player2.applyGravity(dt)
+   for i,v in pairs(players) do
+      players[i].move(dt)
+      players[i].applyGravity(dt)
+   end
 end
 
 -- DESENHO
 function love.draw()
-   player1.draw()
-   player2.draw()
+   for i,v in pairs(players) do
+      players[i].draw()
+   end
    if win.gridScale > 0 then
       drawGrid()
    end
@@ -31,8 +36,9 @@ end
 
 function love.keypressed(key, unicode)
    if key == 'space' then
-      player1.jump(dt)
-      player2.jump(dt)
+      for i,v in pairs(players) do
+         players[i].jump(dt)
+      end
    end
 end
 

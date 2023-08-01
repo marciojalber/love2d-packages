@@ -9,9 +9,7 @@ CONDICOES - MOVER VERTCIAL
    underGravity   != true
 ]]--
 
-moveAction = {}
-
-moveAction.move = function(this, keys)
+local function moveAction(this, keys)
    if this.underGravity == nil then
       error("Valor inexistente para [this.underGravity]")
    end
@@ -95,3 +93,5 @@ moveAction.move = function(this, keys)
       end
    end
 end
+
+return moveAction

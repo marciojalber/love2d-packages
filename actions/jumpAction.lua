@@ -7,10 +7,8 @@ CONDICOES
    underGravity   != true
 ]]--
 
-jumpAction = {}
-
-jumpAction.jump = function(this, keys)
-   if this.underGravity2 == nil then
+local function jumpAction(this, keys)
+   if this.underGravity == nil then
       error("Valor inexistente para [this.underGravity]")
    end
 
@@ -29,3 +27,5 @@ jumpAction.jump = function(this, keys)
       end
    end
 end
+
+return jumpAction
