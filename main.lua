@@ -14,6 +14,8 @@ function love.load()
    -- love.graphics.setBackgroundColor(255,255,255)
    personX = 200
    personY = 50
+   local audio1 = love.audio.newSource( 'assets/musics/Aylex - Glorious (freetouse.com).mp3', 'static' )
+   love.audio.play(audio1)
 end
 
 -- CÁLCULOS
@@ -32,6 +34,8 @@ function love.draw()
    if win.gridScale > 0 then
       drawGrid()
    end
+   love.graphics.setColor(1,1,1)
+   love.graphics.print( 'Sound source: https://freetouse.com/music/category/inspiring', 10, 10 )
 end
 
 function love.keypressed(key, unicode)
